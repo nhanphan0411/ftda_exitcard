@@ -11,16 +11,13 @@ st.write('All the submitted exit cards (or I may call Cards Against Memory Loss)
 st.write('The site might be a bit slow to start. Please be patient 🥺')
 mode = st.selectbox ('Choose a study mode', ["📖 Study with instructors' answers only", "✍🏼 Study your mistakes"])
 
-# @st.cache
-# def load_data(path):
-#     return pd.read_csv(path)
+def load_data(path):
+    return pd.read_csv(path)
 
-# df = load_data(teacher_path)
-
-df = pd.read_csv(teacher_path)
+df = load_data(teacher_path)
 
 if mode == "📖 Study with instructors' answers only":
-    col1, col2, col3 = st.columns((1, 1, 1))
+    col1, col2, col3 = st.beta_columns((1, 1, 1))
     with col1:
         modules = ['Module 1 | SQL', 'Module 2 | Python']
         modules_ = st.multiselect('Module', modules)
@@ -43,7 +40,6 @@ if mode == "📖 Study with instructors' answers only":
     st.dataframe(query_df)
 
 if mode == "✍🏼 Study your mistakes":
-    @st.cache
     def load_student_data(path):
         sub = load_data(path)
         sub_ = sub.melt(id_vars=sub.columns[:5],
@@ -57,20 +53,9 @@ if mode == "✍🏼 Study your mistakes":
         final.rename(columns={"Answer": "Instructor's Answer"}, inplace=True)
         return final
     
-    # final = load_student_data(student_path)
+    final = load_student_data(student_path)
 
-    sub = pd.read_csv(student_path)
-    sub_ = sub.melt(id_vars=sub.columns[:5],
-                    value_vars=sub.columns[5:],
-                    var_name='Question ID',
-                    value_name='Your Answer')
-    final = pd.merge(sub_, df, on=['Module', 'Week', 'Day', 'Question ID'], how='left')[['Name', 'Module', 'Week', 'Day', 'Question ID', 'Question', 'Your Answer', 'Answer']]
-    final['Day'] = pd.Categorical(final['Day'], 
-                                    categories=['Mon', 'Tue', 'Wed', 'Thu'],
-                                    ordered=True)
-    final.rename(columns={"Answer": "Instructor's Answer"}, inplace=True)
-
-    col0, col1, col2, col3 = st.columns((2, 1, 1, 2))
+    col0, col1, col2, col3 = st.beta_columns((2, 1, 1, 2))
     with col0: 
         name = st.selectbox('Your Name', final['Name'].unique())
     with col1:

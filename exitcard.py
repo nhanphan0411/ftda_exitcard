@@ -27,18 +27,18 @@ if mode == "📖 Study with instructors' answers only":
         weeks_ =st.multiselect('Week', weeks)
     with col3:
         keywords = st.text_input('Keywords (separated by comma)')
-        keywords_ = list(map(lambda x: x.lower().strip(), keywords.split(',')))
-        keywords_ = '|'.join(keywords_)
 
     query_df = df.copy()
     if modules_ != []: 
         query_df = query_df[query_df['Module'].isin(modules_)]
     if weeks_ != []:
         query_df = query_df[query_df['Week'].isin(weeks_)]
-    if keywords != None:
+    if keywords != '':
+        keywords_ = list(map(lambda x: x.lower().strip(), keywords.split(',')))
+        keywords_ = '|'.join(keywords_)
         query_df = query_df[query_df['Question'].str.lower().str.contains(keywords_) | query_df['Answer'].str.lower().str.contains(keywords_)]
 
-    st.table(query_df)
+    st.dataframe(query_df)
 
 if mode == "✍🏼 Study your mistakes":
     @st.cache
@@ -68,8 +68,6 @@ if mode == "✍🏼 Study your mistakes":
         weeks_ =st.multiselect('Week', weeks)
     with col3:
         keywords = st.text_input('Keywords (separated by comma)')
-        keywords_ = list(map(lambda x: x.lower().strip(), keywords.split(',')))
-        keywords_ = '|'.join(keywords_)
     
     query_df = final.copy()
     query_df = query_df[query_df['Name']==name]
@@ -78,10 +76,12 @@ if mode == "✍🏼 Study your mistakes":
         query_df = query_df[query_df['Module'].isin(modules_)]
     if weeks_ != []:
         query_df = query_df[query_df['Week'].isin(weeks_)]
-    if keywords != None:
+    if keywords != '':
+        keywords_ = list(map(lambda x: x.lower().strip(), keywords.split(',')))
+        keywords_ = '|'.join(keywords_)
         query_df = query_df[query_df['Question'].str.lower().str.contains(keywords_) | query_df["Instructor's Answer"].str.lower().str.contains(keywords_)]
-
-    st.write(query_df.iloc[:, 1:].astype('object'))
+    
+    st.write(query_df.astype('object'))
 
 # def convert_df(df):
 # # IMPORTANT: Cache the conversion to prevent computation on every rerun

@@ -26,9 +26,9 @@ if keywords != None:
 
 st.table(query_df)
 
-def convert_df(df):
-# IMPORTANT: Cache the conversion to prevent computation on every rerun
-    return df.to_csv().encode('utf-8')
-csv = convert_df(query_df)
+# def convert_df(df):
+# # IMPORTANT: Cache the conversion to prevent computation on every rerun
+#     return df.to_csv().encode('utf-8')
+# csv = convert_df(query_df)
 
 # st.download_button(label="Download data as CSV", data=csv, file_name='exitcards.csv', mime='text/csv')

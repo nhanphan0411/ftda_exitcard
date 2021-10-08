@@ -45,11 +45,11 @@ if mode == "✍🏼 Study your mistakes":
         sub = load_data(path)
         sub_ = sub.melt(id_vars=sub.columns[:5],
                         value_vars=sub.columns[5:],
-                        var_name='Question ID',
+                        var_name='ID',
                         value_name='Your Answer')
 
         sub_['Question ID'] = sub_['Question ID'].str.strip('Question ').astype('int')
-        final = pd.merge(sub_, df, on=['Module', 'Week', 'Day', 'Question ID'], how='left')[['Name', 'Module', 'Week', 'Day', 'Question ID', 'Question', 'Your Answer', 'Answer']]
+        final = pd.merge(sub_, df, on=['Module', 'Week', 'Day', 'Question ID'], how='left')[['Name', 'Module', 'Week', 'Day', 'ID', 'Question', 'Your Answer', 'Answer']]
         
         final['Day'] = pd.Categorical(final['Day'], 
                                       categories=['Mon', 'Tue', 'Wed', 'Thu'],
@@ -83,4 +83,4 @@ if mode == "✍🏼 Study your mistakes":
         keywords_ = '|'.join(keywords_)
         query_df = query_df[query_df['Question'].str.lower().str.contains(keywords_) | query_df["Instructor's Answer"].str.lower().str.contains(keywords_)]
 
-    st.table(query_df.sort_values(['Module', 'Week', 'Day', 'Question ID']))
+    st.table(query_df.sort_values(['Module', 'Week', 'Day', 'ID']))

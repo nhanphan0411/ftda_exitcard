@@ -1,5 +1,6 @@
 name: ftda
 channels:
+  - anaconda
   - conda-forge
   - defaults
 dependencies:
@@ -31,9 +32,9 @@ dependencies:
   - brotlipy=0.7.0=py39h89e85a6_1001
   - bzip2=1.0.8=h1de35cc_0
   - c-ares=1.17.2=h0d85af4_0
-  - ca-certificates=2021.5.30=h033912b_0
+  - ca-certificates=2020.10.14=0
   - cachetools=4.2.4=pyhd8ed1ab_0
-  - certifi=2021.5.30=py39h6e9494a_0
+  - certifi=2021.5.30=py39hecd8cb5_0
   - cffi=1.14.6=py39hb71fe58_0
   - chardet=4.0.0=py39h6e9494a_1
   - click=7.1.2=pyh9f0ad1d_0
@@ -48,6 +49,7 @@ dependencies:
   - gitpython=3.1.24=pyhd8ed1ab_0
   - glog=0.5.0=h25b26a9_0
   - grpc-cpp=1.40.0=h8fdf118_1
+  - gunicorn=20.1.0=py39hecd8cb5_0
   - idna=2.10=pyh9f0ad1d_0
   - importlib-metadata=4.8.1=py39h6e9494a_0
   - intel-openmp=2021.3.0=hecd8cb5_3375

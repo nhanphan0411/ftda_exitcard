@@ -26,6 +26,7 @@ defusedxml @ file:///home/conda/feedstock_root/build_artifacts/defusedxml_161523
 entrypoints @ file:///home/conda/feedstock_root/build_artifacts/entrypoints_1605121927639/work/dist/entrypoints-0.3-py2.py3-none-any.whl
 gitdb @ file:///home/conda/feedstock_root/build_artifacts/gitdb_1616781027402/work
 GitPython @ file:///home/conda/feedstock_root/build_artifacts/gitpython_1632423794953/work
+gunicorn @ file:///opt/concourse/worker/volumes/live/f7b39e0f-a194-41b6-4722-90b8829755e9/volume/gunicorn_1617120639810/work
 idna @ file:///home/conda/feedstock_root/build_artifacts/idna_1593328102638/work
 importlib-metadata @ file:///Users/runner/miniforge3/conda-bld/importlib-metadata_1630267507666/work
 ipykernel @ file:///Users/runner/miniforge3/conda-bld/ipykernel_1631291142144/work/dist/ipykernel-6.4.1-py3-none-any.whl

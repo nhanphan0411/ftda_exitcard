@@ -81,7 +81,7 @@ if mode == "✍🏼 Study your mistakes":
         keywords_ = '|'.join(keywords_)
         query_df = query_df[query_df['Question'].str.lower().str.contains(keywords_) | query_df["Instructor's Answer"].str.lower().str.contains(keywords_)]
     
-    st.write(query_df.astype('object'))
+    st.write(query_df.iloc[:, 1:].astype('object'))
 
 # def convert_df(df):
 # # IMPORTANT: Cache the conversion to prevent computation on every rerun

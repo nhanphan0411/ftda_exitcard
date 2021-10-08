@@ -17,7 +17,7 @@ def load_data(path):
 df = load_data(teacher_path)
 
 if mode == "📖 Study with instructors' answers only":
-    col1, col2, col3 = st.beta_columns((1, 1, 1))
+    col1, col2, col3 = st.columns((1, 1, 1))
     with col1:
         modules = ['Module 1 | SQL', 'Module 2 | Python']
         modules_ = st.multiselect('Module', modules)
@@ -55,7 +55,7 @@ if mode == "✍🏼 Study your mistakes":
     
     final = load_student_data(student_path)
 
-    col0, col1, col2, col3 = st.beta_columns((2, 1, 1, 2))
+    col0, col1, col2, col3 = st.columns((2, 1, 1, 2))
     with col0: 
         name = st.selectbox('Your Name', final['Name'].unique())
     with col1:

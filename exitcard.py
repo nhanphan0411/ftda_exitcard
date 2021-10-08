@@ -1,10 +1,11 @@
 import streamlit as st
 import pandas as pd
 
+st.set_page_config(layout="wide")
 st.title('Exit Card Viewer')
 df = pd.read_csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vQTCLXKUQ2TMFDdDpi0sjI5J_Cpg1uU19WlV2hytSFbl81GAhDiwt82rMq7kYjSv4w3YpbYk2UQCwEI/pub?gid=1804476502&single=true&output=csv', 
                  )
-col1, col2, col3 = st.beta_columns((1, 1, 1))
+col1, col2, col3 = st.columns((1, 1, 1))
 with col1:
     modules = ['Module 1 | SQL', 'Module 2 | Python']
     modules_ = st.multiselect('Module', modules)

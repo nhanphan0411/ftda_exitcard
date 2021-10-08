@@ -37,7 +37,6 @@ if mode == "📖 Study with instructors' answers only":
         keywords_ = '|'.join(keywords_)
         query_df = query_df[query_df['Question'].str.lower().str.contains(keywords_) | query_df['Answer'].str.lower().str.contains(keywords_)]
     
-
     st.table(query_df)
 
 if mode == "✍🏼 Study your mistakes":
@@ -47,7 +46,10 @@ if mode == "✍🏼 Study your mistakes":
                         value_vars=sub.columns[5:],
                         var_name='Question ID',
                         value_name='Your Answer')
+
+        sub_['Question ID'] = sub_['Question ID'].str.strip('Question ').astype('int')
         final = pd.merge(sub_, df, on=['Module', 'Week', 'Day', 'Question ID'], how='left')[['Name', 'Module', 'Week', 'Day', 'Question ID', 'Question', 'Your Answer', 'Answer']]
+        
         final['Day'] = pd.Categorical(final['Day'], 
                                       categories=['Mon', 'Tue', 'Wed', 'Thu'],
                                       ordered=True)

@@ -15,7 +15,7 @@ def load_data(path):
     return pd.read_csv(path)
 
 df = load_data(teacher_path)
-df['Question ID'] = df['Question ID'].astype(int)
+df['ID'] = df['ID'].astype(int)
 
 if mode == "📖 Study with instructors' answers only":
     col1, col2, col3 = st.columns((1, 1, 1))
@@ -48,8 +48,8 @@ if mode == "✍🏼 Study your mistakes":
                         var_name='ID',
                         value_name='Your Answer')
 
-        sub_['Question ID'] = sub_['Question ID'].str.strip('Question ').astype('int')
-        final = pd.merge(sub_, df, on=['Module', 'Week', 'Day', 'Question ID'], how='left')[['Name', 'Module', 'Week', 'Day', 'ID', 'Question', 'Your Answer', 'Answer']]
+        sub_['ID'] = sub_['ID'].str.strip('Question ').astype('int')
+        final = pd.merge(sub_, df, on=['Module', 'Week', 'Day', 'ID'], how='left')[['Name', 'Module', 'Week', 'Day', 'ID', 'Question', 'Your Answer', 'Answer']]
         
         final['Day'] = pd.Categorical(final['Day'], 
                                       categories=['Mon', 'Tue', 'Wed', 'Thu'],

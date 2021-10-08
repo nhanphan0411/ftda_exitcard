@@ -36,8 +36,9 @@ if mode == "📖 Study with instructors' answers only":
         keywords_ = list(map(lambda x: x.lower().strip(), keywords.split(',')))
         keywords_ = '|'.join(keywords_)
         query_df = query_df[query_df['Question'].str.lower().str.contains(keywords_) | query_df['Answer'].str.lower().str.contains(keywords_)]
+    
 
-    st.dataframe(query_df)
+    st.table(query_df)
 
 if mode == "✍🏼 Study your mistakes":
     def load_student_data(path):
@@ -78,12 +79,5 @@ if mode == "✍🏼 Study your mistakes":
         keywords_ = list(map(lambda x: x.lower().strip(), keywords.split(',')))
         keywords_ = '|'.join(keywords_)
         query_df = query_df[query_df['Question'].str.lower().str.contains(keywords_) | query_df["Instructor's Answer"].str.lower().str.contains(keywords_)]
-    
-    st.write(query_df.iloc[:, 1:].astype('object'))
 
-# def convert_df(df):
-# # IMPORTANT: Cache the conversion to prevent computation on every rerun
-#     return df.to_csv().encode('utf-8')
-# csv = convert_df(query_df)
-
-# st.download_button(label="Download data as CSV", data=csv, file_name='exitcards.csv', mime='text/csv')
+    st.table(query_df.sort_values(['Module', 'Week', 'Day', 'Question ID']))

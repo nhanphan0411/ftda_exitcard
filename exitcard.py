@@ -15,6 +15,7 @@ def load_data(path):
     return pd.read_csv(path)
 
 df = load_data(teacher_path)
+df['Question ID'] = df['Question ID'].astype(int)
 
 if mode == "📖 Study with instructors' answers only":
     col1, col2, col3 = st.columns((1, 1, 1))

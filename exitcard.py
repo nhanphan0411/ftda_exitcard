@@ -6,7 +6,7 @@ st.title('✍🏼 Exit Card Viewer')
 
 # st.write('All the submitted exit cards (or I may call Cards Against Memory Loss) will be collected here. Use this for your review while studying, or preparing for an interview. The site might be a bit slow to start. Please be patient 🥺')
 # mode = st.selectbox ('Choose a study mode', ["📖 Study with instructors' answers only", "✍🏼 Study your mistakes"])
-cohort = st.sidebar.selectbox('', ["--- Choose a Course ---", "SOUTH SANDWICH", "FTDA"])
+cohort = st.sidebar.selectbox('', ["--- Choose a Course ---", "SOUTH SANDWICH", "FULL-TIME DATA SCIENCE"])
 
 if cohort == "--- Choose a Course ---":
     st.markdown('*Please specify your course*')
@@ -33,7 +33,8 @@ else:
                 '614c3b0c8406f200212b9f05':'Lê Huy Vỹ',
                 '614c3b0e8406f200212b9f09':'Trần Thị Li Li',
                 '6151511994a921001fca057b':'Dương Hoàng Yến'}
-    elif cohort == "FTDA":
+    
+    elif cohort == "FULL-TIME DATA SCIENCE":
         teacher_path = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQTCLXKUQ2TMFDdDpi0sjI5J_Cpg1uU19WlV2hytSFbl81GAhDiwt82rMq7kYjSv4w3YpbYk2UQCwEI/pub?gid=1804476502&single=true&output=csv'
         student_path ='https://docs.google.com/spreadsheets/d/e/2PACX-1vQTCLXKUQ2TMFDdDpi0sjI5J_Cpg1uU19WlV2hytSFbl81GAhDiwt82rMq7kYjSv4w3YpbYk2UQCwEI/pub?gid=1265141036&single=true&output=csv'
 

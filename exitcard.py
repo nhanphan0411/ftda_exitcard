@@ -12,13 +12,32 @@ if cohort == "--- Choose a Course ---":
     st.markdown('*Please specify your course*')
 
 else: 
-    mode = st.sidebar.selectbox('CHOOSE STUDY MODE', ["📖 Study with instructors' answers only", "✍🏼 Study your mistakes"])
     if cohort == "SOUTH SANDWICH":
         teacher_path = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSXDs6_lRFR96clhKRa-D3a3wX1qTP2DCEzDX4P8-bS4kwu9ldyqIJQC3UTHJ5F4vSNhyjAJMjHGTgf/pub?gid=1724394138&single=true&output=csv'
         student_path = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSXDs6_lRFR96clhKRa-D3a3wX1qTP2DCEzDX4P8-bS4kwu9ldyqIJQC3UTHJ5F4vSNhyjAJMjHGTgf/pub?gid=648124414&single=true&output=csv'
+        student_list = {'614c3afc8570b1001f6aca3d':'Phạm Thị Thu Huyền',
+                '614c3afd8406f200212b9ecd':'Tô Minh Hằng',
+                '614c3aff8406f200212b9ed1':'Hà Lê',
+                '614c3b008406f200212b9ed5':'Nguyễn Cửu Quỳnh Vy',
+                '614c3b018406f200212b9ed9':'Trịnh Nguyễn Thảo Nguyên',
+                '614c3b028406f200212b9edd':'Nguyễn Hà Yên',
+                '614c3b038406f200212b9ee1':'Trương Hoàng Đông',
+                '614c3b048406f200212b9ee5':'Nguyễn Thị Thanh Ngọc',
+                '614c3b058406f200212b9ee9':'Vũ Thị Kim Hương',
+                '614c3b068406f200212b9eed':'Vũ Thị Hương Ly',
+                '614c3b078406f200212b9ef1':'Nguyễn Đức Anh',
+                '614c3b088406f200212b9ef5':'Trần Đức Hiệp',
+                '614c3b098406f200212b9ef9':'Đặng Diệu Thạch Thảo',
+                '614c3b0a8406f200212b9efd':'Phan Công Hội',
+                '614c3b0b8406f200212b9f01':'Nguyễn Hoàng Đỗ Quyên',
+                '614c3b0c8406f200212b9f05':'Lê Huy Vỹ',
+                '614c3b0e8406f200212b9f09':'Trần Thị Li Li',
+                '6151511994a921001fca057b':'Dương Hoàng Yến'}
     elif cohort == "FTDA":
         teacher_path = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQTCLXKUQ2TMFDdDpi0sjI5J_Cpg1uU19WlV2hytSFbl81GAhDiwt82rMq7kYjSv4w3YpbYk2UQCwEI/pub?gid=1804476502&single=true&output=csv'
-        student_path='https://docs.google.com/spreadsheets/d/e/2PACX-1vQTCLXKUQ2TMFDdDpi0sjI5J_Cpg1uU19WlV2hytSFbl81GAhDiwt82rMq7kYjSv4w3YpbYk2UQCwEI/pub?gid=1265141036&single=true&output=csv'
+        student_path ='https://docs.google.com/spreadsheets/d/e/2PACX-1vQTCLXKUQ2TMFDdDpi0sjI5J_Cpg1uU19WlV2hytSFbl81GAhDiwt82rMq7kYjSv4w3YpbYk2UQCwEI/pub?gid=1265141036&single=true&output=csv'
+
+    mode = st.sidebar.selectbox('CHOOSE STUDY MODE', ["📖 Study with instructors' answers only", "✍🏼 Study your mistakes"])
 
     def load_data(path):
         return pd.read_csv(path)
@@ -28,9 +47,6 @@ else:
 
     if mode == "📖 Study with instructors' answers only":
         col1, col2 = st.columns((1, 2))
-        # with col1:
-        #     modules = ['Module 1 | SQL', 'Module 2 | Python']
-        #     modules_ = st.multiselect('Module', modules)
         with col1: 
             weeks = list(range(1, 9))
             weeks_ = st.sidebar.multiselect('CHOOSE WEEK', weeks)
@@ -38,8 +54,6 @@ else:
             keywords = st.sidebar.text_input('SEARCH BY KEYWORDS (separated by comma)')
 
         query_df = df.copy()
-        # if modules_ != []: 
-        #     query_df = query_df[query_df['Module'].isin(modules_)]
         if weeks_ != []:
             query_df = query_df[query_df['Week'].isin(weeks_)]
         if keywords != '':
@@ -50,7 +64,10 @@ else:
         st.table(query_df)
 
     if mode == "✍🏼 Study your mistakes":
-        print(df.info())
+        weeks = list(range(3, 10))
+        weeks_ = st.sidebar.multiselect('CHOOSE WEEK', weeks)
+        keywords = st.sidebar.text_input('SEARCH BY KEYWORDS (separated by comma)')
+
         def load_student_data(path):
             sub = load_data(path)
     
@@ -61,38 +78,32 @@ else:
 
             sub_['ID'] = sub_['ID'].str.strip('Question ')
             sub_[['Week', 'ID']] = sub_[['Week', 'ID']].astype('int')
-            # final = pd.merge(sub_, df, on=['Module', 'Week', 'Day', 'ID'], how='left')[['Name', 'Module', 'Week', 'Day', 'ID', 'Question', 'Your Answer', 'Answer']]
             final = pd.merge(sub_, df, on=['Week', 'Day', 'ID'], how='left')[['Name', 'Week', 'Day', 'ID', 'Question', 'Your Answer', 'Answer']]
             
-            final['Day'] = pd.Categorical(final['Day'], categories=['Mon', 'Tue', 'Wed', 'Thu'], ordered=True)
+            final['Day'] = pd.Categorical(final['Day'], categories=['Mon', 'Tue', 'Wed', 'Thu', 'Fri'], ordered=True)
             final.rename(columns={"Answer": "Instructor's Answer"}, inplace=True)
             return final
         
         final = load_student_data(student_path)
 
-        col1, col2, col3 = st.columns((1, 1, 2))
+        col1, col2 = st.columns((2, 1))
         with col1: 
-            name = st.sidebar.selectbox('YOUR NAME', final['Name'].unique())
-        # with col1:
-        #     modules = ['Module 1 | SQL', 'Module 2 | Python']
-        #     modules_ = st.multiselect('Module', modules)
-        with col2: 
-            weeks = list(range(3, 10))
-            weeks_ = st.sidebar.multiselect('CHOOSE WEEK', weeks)
-        with col3:
-            keywords = st.sidebar.text_input('SEARCH BY KEYWORDS (separated by comma)')
-        
+            name_id = st.text_input('INPUT YOUR STUDENT ID - for example: 614c3b0b8406f200212b947').strip()
+        if name_id in student_list.keys():
+            st.markdown(f'🙌🏻 {student_list[name_id]}')
+    
         query_df = final.copy()
-        query_df = query_df[query_df['Name']==name]
+        if name_id in student_list.keys(): 
+            name = student_list[name_id]
+            query_df = query_df[query_df['Name']==name]
+            if weeks_ != []:
+                query_df = query_df[query_df['Week'].isin(weeks_)]
+            if keywords != '':
+                keywords_ = list(map(lambda x: x.lower().strip(), keywords.split(',')))
+                keywords_ = '|'.join(keywords_)
+                query_df = query_df[query_df['Question'].str.lower().str.contains(keywords_) | query_df["Instructor's Answer"].str.lower().str.contains(keywords_)]
+            st.table(query_df.iloc[:, 1:].sort_values(['Week', 'Day', 'ID']).reset_index(drop=True))
+        else: 
+            st.markdown('*Please input a correct ID*')
 
-        # if modules_ != []: 
-        #     query_df = query_df[query_df['Module'].isin(modules_)]
-        if weeks_ != []:
-            query_df = query_df[query_df['Week'].isin(weeks_)]
-        if keywords != '':
-            keywords_ = list(map(lambda x: x.lower().strip(), keywords.split(',')))
-            keywords_ = '|'.join(keywords_)
-            query_df = query_df[query_df['Question'].str.lower().str.contains(keywords_) | query_df["Instructor's Answer"].str.lower().str.contains(keywords_)]
-
-        # st.table(query_df.sort_values(['Module', 'Week', 'Day', 'ID']))
-        st.table(query_df.iloc[:, 1:].sort_values(['Week', 'Day', 'ID']).reset_index(drop=True))
+        

@@ -6,14 +6,14 @@ st.title('✍🏼 Exit Card Viewer')
 
 # st.write('All the submitted exit cards (or I may call Cards Against Memory Loss) will be collected here. Use this for your review while studying, or preparing for an interview. The site might be a bit slow to start. Please be patient 🥺')
 # mode = st.selectbox ('Choose a study mode', ["📖 Study with instructors' answers only", "✍🏼 Study your mistakes"])
-cohort = st.sidebar.selectbox('', ["--- Choose a Course ---", "South Sandwich", "FTDA"])
+cohort = st.sidebar.selectbox('', ["--- Choose a Course ---", "SOUTH SANDWICH", "FTDA"])
 
 if cohort == "--- Choose a Course ---":
     st.markdown('*Please specify your course*')
 
 else: 
     mode = st.sidebar.selectbox('CHOOSE STUDY MODE', ["📖 Study with instructors' answers only", "✍🏼 Study your mistakes"])
-    if cohort == "South Sandwich":
+    if cohort == "SOUTH SANDWICH":
         teacher_path = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSXDs6_lRFR96clhKRa-D3a3wX1qTP2DCEzDX4P8-bS4kwu9ldyqIJQC3UTHJ5F4vSNhyjAJMjHGTgf/pub?gid=1724394138&single=true&output=csv'
         student_path = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSXDs6_lRFR96clhKRa-D3a3wX1qTP2DCEzDX4P8-bS4kwu9ldyqIJQC3UTHJ5F4vSNhyjAJMjHGTgf/pub?gid=648124414&single=true&output=csv'
     elif cohort == "FTDA":

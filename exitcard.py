@@ -80,7 +80,7 @@ else:
         st.table(query_df)
 
     if mode == "✍🏼 Study your mistakes":
-        weeks = list(range(3, 10))
+        weeks = list(range(1, 10))
         weeks_ = st.sidebar.multiselect('CHOOSE WEEK', weeks)
         keywords = st.sidebar.text_input('SEARCH BY KEYWORDS (separated by comma)')
 

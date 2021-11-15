@@ -37,6 +37,21 @@ else:
     elif cohort == "FULL-TIME DATA SCIENCE":
         teacher_path = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQTCLXKUQ2TMFDdDpi0sjI5J_Cpg1uU19WlV2hytSFbl81GAhDiwt82rMq7kYjSv4w3YpbYk2UQCwEI/pub?gid=1804476502&single=true&output=csv'
         student_path ='https://docs.google.com/spreadsheets/d/e/2PACX-1vQTCLXKUQ2TMFDdDpi0sjI5J_Cpg1uU19WlV2hytSFbl81GAhDiwt82rMq7kYjSv4w3YpbYk2UQCwEI/pub?gid=1265141036&single=true&output=csv'
+        student_list = {"618c9eaff63bc8001f0faa08": "Trang Thanh Le",
+                        "618c9eb0f63bc8001f0faa0a": "Nguyễn Thị Bích Trân",
+                        "618c9eb0f63bc8001f0faa0c": "Lý Công Thành",
+                        "618c9eb1f63bc8001f0faa0e": "Nguyễn Cửu Quỳnh Vy",
+                        "618c9eb1f63bc8001f0faa10": "Vũ Thị Hương Ly",
+                        "618c9eb1f63bc8001f0faa12": "Âu Trường Hi",
+                        "618c9eb2f63bc8001f0faa14": "Nguyễn Ngọc Hoài Nguyễn",
+                        "618c9eb2f63bc8001f0faa16": "Bùi Thị Thanh Thủy",
+                        "618c9eb3f63bc8001f0faa18": "Đào Phương Thế Luân",
+                        "618c9eb3f63bc8001f0faa1a": "Nguyen Tien Dung",
+                        "618c9eb4f63bc8001f0faa1c": "Đinh Thị Thu Hà",
+                        "618c9eb4f63bc8001f0faa1e": "Lâm Minh Hoa",
+                        "618c9eb5f63bc8001f0faa20": "Nguyễn Minh Trí",
+                        "618c9eb5f63bc8001f0faa22": "Huỳnh Dương Mỹ Hương",
+                        "618c9eb5f63bc8001f0faa24": "Phan Hạ Uyên"}
 
     mode = st.sidebar.selectbox('CHOOSE STUDY MODE', ["📖 Study with instructors' answers only", "✍🏼 Study your mistakes"])
 

@@ -51,7 +51,8 @@ else:
                         "618c9eb4f63bc8001f0faa1e": "Lâm Minh Hoa",
                         "618c9eb5f63bc8001f0faa20": "Nguyễn Minh Trí",
                         "618c9eb5f63bc8001f0faa22": "Huỳnh Dương Mỹ Hương",
-                        "618c9eb5f63bc8001f0faa24": "Phan Hạ Uyên"}
+                        "618c9eb5f63bc8001f0faa24": "Phan Hạ Uyên",
+                        "6195f9a6295c9b001fd74084": "Duy Nghi"}
 
     mode = st.sidebar.selectbox('CHOOSE STUDY MODE', ["📖 Study with instructors' answers only", "✍🏼 Study your mistakes"])
 
